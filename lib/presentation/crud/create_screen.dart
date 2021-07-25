@@ -105,6 +105,8 @@ class CreateScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 75),
                   onTap: () async {
                     
+                    crud.changeId();
+                    
                     if (! crud.productFieldsValidator(crud.product) ) {
                       Fluttertoast.showToast(
                           msg: "All fields are required except description",
