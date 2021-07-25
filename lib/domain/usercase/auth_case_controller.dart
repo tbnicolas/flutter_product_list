@@ -45,7 +45,7 @@ class AuthCaseController extends ChangeNotifier with Validator {
   SignUpStatus get signUpStatus => this._signUpStatus;
   UserCredential get userCredential => this._usercredential;
 
-
+    /* En el apartado de los sets lo que se hace es asignarle lo que viene del metodo a la propiedad y posteriormente notificar*/
    set typedEmail(String email) {
      this._email = email;
      notifyListeners();
@@ -62,6 +62,8 @@ class AuthCaseController extends ChangeNotifier with Validator {
      notifyListeners();
    }
 
+    // Cuando se hace uso del metodo se inicia sesion y se cambia el status para interactuar con la vista
+
    Future<void> handleSignIn() async{
      try {
        _authStatus = AuthStatus.Authenticating;
@@ -74,17 +76,16 @@ class AuthCaseController extends ChangeNotifier with Validator {
 
        _authStatus = AuthStatus.Authenticated;
        notifyListeners();
-       //return _authStatus;
 
      } catch (e) {
 
        _authStatus = AuthStatus.UnAunthenticated;
        notifyListeners();
-       //return _authStatus = AuthStatus.Authenticated;
 
      }
      
    }
+    // Cuando se hace uso del metodo se registra y se cambia el status para interactuar con la vista
 
    Future<void> handleSignUp() async{
      try {

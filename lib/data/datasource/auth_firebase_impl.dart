@@ -11,6 +11,7 @@ class AuthFirebaseImpl extends  AuthRespositoryInterface {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   
+  /* Se le da inicio de sesion a una cuenta previamente registrada */
 
   @override
   Future<UserCredential> signInWithCredentials(LoginRequest login) async {
@@ -19,6 +20,8 @@ class AuthFirebaseImpl extends  AuthRespositoryInterface {
       password: login.password
     );
   }
+
+  /* Se registra una cuenta en firebase Authentication */
 
   @override
   Future<UserCredential> signUpWithCredentials(localUser.User user) async{
