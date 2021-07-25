@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_product_list/domain/model/product_model.dart';
 import 'package:flutter_product_list/domain/usercase/crud_case_controller.dart';
 import 'package:flutter_product_list/presentation/common/primary_button.dart';
 import 'package:flutter_product_list/presentation/common/textfield.dart';
@@ -106,7 +105,7 @@ class CreateScreen extends StatelessWidget {
                   onTap: () async {
                     
                     crud.changeId();
-                    
+
                     if (! crud.productFieldsValidator(crud.product) ) {
                       Fluttertoast.showToast(
                           msg: "All fields are required except description",

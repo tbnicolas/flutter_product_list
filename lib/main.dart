@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_product_list/data/datasource/crud_firebase_impl.dart';
-import 'package:flutter_product_list/domain/repository/auth_repository.dart';
 import 'package:flutter_product_list/domain/usercase/auth_case_controller.dart';
 import 'package:flutter_product_list/domain/usercase/crud_case_controller.dart';
-import 'package:flutter_product_list/presentation/productList/productList.dart';
 import 'package:flutter_product_list/presentation/routes/routes.dart';
 import 'package:flutter_product_list/presentation/signIn/sign_in_screen.dart';
 import 'package:provider/provider.dart';
