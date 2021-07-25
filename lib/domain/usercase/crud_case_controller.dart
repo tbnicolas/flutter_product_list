@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_product_list/domain/model/product_model.dart';
 import 'package:flutter_product_list/domain/repository/product_repository.dart';
+import 'package:flutter_product_list/domain/validator/validator.dart';
 
 
 enum ProductStatus{
@@ -13,7 +14,7 @@ enum ProductStatus{
 }
 
 
-class CrudCaseController extends ChangeNotifier {
+class CrudCaseController extends ChangeNotifier with Validator{
 
   final ProductRepositoryInterface productRepositoryInterface;
   
@@ -79,6 +80,7 @@ class CrudCaseController extends ChangeNotifier {
   void clearFields(){
     
     this._product = new Product();
+    //notifyListeners();
 
   }
 
@@ -94,18 +96,7 @@ class CrudCaseController extends ChangeNotifier {
     }
   }
 
-  bool validator(){
-    /* 
-     Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-        RegExp regExp = new RegExp(pattern);
-
-        if(regExp.hasMatch(email)){
-          sink.add(email);
-        }else{
-          sink.addError('Email no es correcto');
-        }
-     */
-  }
+  
 
   Future<ProductStatus> handleCreateProduct() async {
     try {
@@ -114,7 +105,11 @@ class CrudCaseController extends ChangeNotifier {
 
       await this.productRepositoryInterface.addProduct(this._product);
       this._productStatus = ProductStatus.Created;
+      
+      clearFields();
+
       notifyListeners();
+      
 
       return _productStatus;
     } catch (e) {
@@ -147,6 +142,7 @@ class CrudCaseController extends ChangeNotifier {
   }
   Future handleDeleteProduct(String id) {
     return this.productRepositoryInterface.deleteProduct(id);
-  } 
+  }
+
   
 }

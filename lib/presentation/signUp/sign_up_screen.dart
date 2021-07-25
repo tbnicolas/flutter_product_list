@@ -6,6 +6,7 @@ import 'package:flutter_product_list/presentation/common/textfield.dart';
 import 'package:flutter_product_list/presentation/productList/productList.dart';
 import 'package:flutter_product_list/presentation/signIn/bottom_text.dart';
 import 'package:flutter_product_list/presentation/signIn/text_screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
  
@@ -80,10 +81,27 @@ class SignUpScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 75),
                   onTap: () async {
                     
+                    if (!auth.emailAndPasswordValidator(auth.typedEmail, auth.typedPassword)){
+                      Fluttertoast.showToast(
+                        msg: 'Email example: ex@example.com',
+                        toastLength: Toast.LENGTH_LONG
+                      );
+                      Fluttertoast.showToast(
+                        msg: 'Password must be greater than 5 characters',
+                        toastLength: Toast.LENGTH_LONG
+                      );
+                     return; 
+                    }
+                    
                     await auth.handleSignUp();
 
                     if ( auth.signUpStatus == SignUpStatus.Registered ) {
                       Navigator.pushNamed(context, ProductListScreen.routeName);
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Something went wrong',
+                        toastLength: Toast.LENGTH_LONG
+                      );
                     }
 
                   },

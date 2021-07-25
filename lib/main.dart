@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             child:  new MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Material App',
-              initialRoute: ProductListScreen.routeName/* SignInScreen.routeName */,
+              initialRoute: SignInScreen.routeName,
               routes: appRoutes,
             ),
             

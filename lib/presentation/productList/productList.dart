@@ -32,8 +32,9 @@ class ProductListScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         if (index == 0 ) {
                           return new TopImage(
-                            path: 'assets/triangulo.png',
-                            isSvg: false,
+                            path: 'assets/productSVG.svg',
+                            //path: 'assets/triangulo.png',
+                            /* isSvg: false, */
                             height: 200,
                             margin: EdgeInsets.only(top: 20,bottom: 30),
                           );

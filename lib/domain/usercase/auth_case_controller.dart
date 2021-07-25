@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_product_list/domain/repository/auth_repository.dart';
 import 'package:flutter_product_list/domain/request/login_request.dart';
 import 'package:flutter_product_list/domain/model/user_model.dart' as localUser;
+import 'package:flutter_product_list/domain/validator/validator.dart';
 
 
 
@@ -23,7 +24,7 @@ enum SignUpStatus{
 }
 
 
-class AuthCaseController extends ChangeNotifier {
+class AuthCaseController extends ChangeNotifier with Validator {
 
   final AuthRespositoryInterface authRespositoryInterface;
 

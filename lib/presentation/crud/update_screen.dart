@@ -16,6 +16,7 @@ class Updatecreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final crud = Provider.of<CrudCaseController>(context,listen: false);
+
     final size = MediaQuery.of(context).size;
     return new Scaffold(
 
@@ -107,18 +108,26 @@ class Updatecreen extends StatelessWidget {
                   height: 60,
                   margin: EdgeInsets.symmetric(horizontal: 75),
                   onTap: () async {
-                    await crud.handleUpdateProduct();
 
-                    Navigator.pop(context);
-                    
+                      if (! crud.productFieldsValidator(crud.product) ) {
+                        Fluttertoast.showToast(
+                            msg: "All fields are required except description",
+                            toastLength: Toast.LENGTH_LONG,
+                        );
+                        return;
+                      }
+                       await crud.handleUpdateProduct();
 
-                    if (crud.productStatus == ProductStatus.Error) {
-                      Fluttertoast.showToast(
-                          msg: "Error has orcurred",
-                          toastLength: Toast.LENGTH_LONG,
-                      );
-                    }
+                        Navigator.pop(context);
+                        
 
+                        if (crud.productStatus == ProductStatus.Error) {
+                          Fluttertoast.showToast(
+                              msg: "Error has orcurred",
+                              toastLength: Toast.LENGTH_LONG,
+                          );
+                        }
+           
                   },
                 ),
 

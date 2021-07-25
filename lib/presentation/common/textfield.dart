@@ -19,7 +19,7 @@ class Input extends StatelessWidget {
      this.margin,
      this.obscureText = false,
      this.keyboardType,
-     this.maxLines,
+     this.maxLines = 1,
      this.controller
   });
 

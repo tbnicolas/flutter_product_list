@@ -82,11 +82,26 @@ class SignInScreen extends StatelessWidget {
                   height: 60,
                   margin: EdgeInsets.symmetric(horizontal: 75),
                   onTap: () async {
-                    
+                    if (!auth.emailAndPasswordValidator(auth.typedEmail, auth.typedPassword)){
+                      Fluttertoast.showToast(
+                        msg: 'Email example: ex@example.com',
+                        toastLength: Toast.LENGTH_LONG
+                      );
+                      Fluttertoast.showToast(
+                        msg: 'Password must be greater than 5 characters',
+                        toastLength: Toast.LENGTH_LONG
+                      );
+                     return; 
+                    }
                     await auth.handleSignIn();
-
+                    
                     if ( auth.authStatus == AuthStatus.Authenticated ) {
                       Navigator.pushNamed(context, ProductListScreen.routeName);
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Something went wrong',
+                        toastLength: Toast.LENGTH_LONG
+                      );
                     }
 
                   },

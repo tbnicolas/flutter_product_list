@@ -34,4 +34,12 @@ class Product {
         "price": price,
         "id": id
     };
+
+    bool fieldsValidator(){
+      final nameLength = this.name?.length ?? 0;
+      if( nameLength > 0    && this.price != null   && this.stock != null ) {
+        return true;
+      }
+      return false;
+    }
 }
